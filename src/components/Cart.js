@@ -31,7 +31,7 @@ class Cart extends Component {
             <Header as='h1' id='page-header'>Your Order</Header>
             <Container id='cart-empty-box'>
               <p id='cart-empty-text'>Your cart is empty. Add some pizzas <span role='img' aria-label='pizza'>🍕🍕🍕</span></p>
-              <Button as={Link} to='/menu' color='teal' size='large'>Go to Menu</Button>
+              <Button as={Link} to='/' color='teal' size='large'>Go to Menu</Button>
             </Container>
           </Container>
           <Footer />
@@ -45,7 +45,7 @@ class Cart extends Component {
         <Container id='page-container'>
           <Container id='cart-header'>
             <Header as='h1' id='page-header'>Your Cart</Header>
-            <Button as={Link} to='/menu' color='teal' size='large' id='cart-menu-btn'>Back to Menu</Button>
+            <Button as={Link} to='/' color='teal' size='large' id='cart-menu-btn'>Back to Menu</Button>
           </Container>
           <Container id='order-box'>
             <Order

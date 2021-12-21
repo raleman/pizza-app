@@ -121,9 +121,6 @@ class App extends Component {
         <Fragment>
           <Switch>
             <Route exact path='/' render={ (props) =>
-              <Home {...props}
-              updatePostcode={this.updatePostcode} /> } />
-            <Route exact path='/menu' render={ (props) =>
               <Menu {...props}
                 orderTotal={this.state.orderTotal}
                 addToOrder={this.addToOrder}

@@ -25,7 +25,7 @@ class NavBar extends Component{
     return(
       <Menu fixed='top' borderless id='navbar'>
         <Container>
-          <Menu.Item as={Link} to='/menu' id='navbar-header'>Pizza 42</Menu.Item>
+          <Menu.Item as={Link} to='/' id='navbar-header'>Pizza 42</Menu.Item>
           <Menu.Item id='navbar-login' position='right'>
           {!isAuthenticated && (
             <Button color='teal' onClick={loginWithRedirect}>Log in</Button>

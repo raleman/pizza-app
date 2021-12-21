@@ -55,7 +55,7 @@ class UserDetails extends Component {
           </Card>
       );
     } else {
-      return <Button color='teal' size='large' onClick={loginWithRedirect}>Log in</Button>;   
+      return <div>Please log in</div>;   
     }
 
 

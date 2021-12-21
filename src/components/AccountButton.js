@@ -23,11 +23,11 @@ class AccountButton extends Component{
 
     if (isAuthenticated) {
       return (
-        <Image as={Link} to="/profile" size="mini" src={user.picture} circular style={{marginLeft:'5px'}}>
+        <Image as={Link} to="/profile" size="mini" src={user.picture} circular>
         </Image>
       );
     } else {
-      return <Button color='teal' size='large' onClick={loginWithRedirect} style={{marginLeft:'5px'}}>Log in</Button>;
+      return <Button color='teal' size='large' onClick={loginWithRedirect}>Log in</Button>;
     }
 
 

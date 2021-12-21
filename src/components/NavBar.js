@@ -19,9 +19,11 @@ class NavBar extends Component{
         <Container>
           <Menu.Item as={Link} to='/' id='navbar-header'>Pizza 42</Menu.Item>     
           <Menu.Item as={Link} to='/cart' id='navbar-total' position='right'>
-            <Icon name='cart'/>
-            {formatPrice(this.props.orderTotal)}
-            <AccountButton />
+              <Icon name='cart'/>
+              {formatPrice(this.props.orderTotal)}
+          </Menu.Item>
+          <Menu.Item id='navbar-account'>
+          <AccountButton />
           </Menu.Item>
         </Container>
       </Menu>

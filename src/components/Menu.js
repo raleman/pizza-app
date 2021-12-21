@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
-import { Link  } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Header, Container, Button } from 'semantic-ui-react';
+import { Header, Container } from 'semantic-ui-react';
 
 import NavBar from './NavBar';
 import Footer from './Footer';

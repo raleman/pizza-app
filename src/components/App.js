@@ -4,7 +4,6 @@ import {StripeProvider} from 'react-stripe-elements';
 import { PizzaList } from '../data/pizzas';
 import { sampleCustomer } from '../data/sampleCustomer';
 
-import Home from './Home';
 import Menu from './Menu';
 import Cart from './Cart';
 import Checkout from './Checkout';

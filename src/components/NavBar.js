@@ -14,7 +14,7 @@ class NavBar extends Component{
     return(
       <Menu fixed='top' borderless id='navbar'>
         <Container>
-          <Menu.Item as={Link} to='/menu' id='navbar-header'>Slices</Menu.Item>
+          <Menu.Item as={Link} to='/menu' id='navbar-header'>Pizza 42</Menu.Item>
           <Menu.Item id='navbar-total' position='right'>
             <Icon name='cart'/>
             {formatPrice(this.props.orderTotal)}

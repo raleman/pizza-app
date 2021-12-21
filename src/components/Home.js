@@ -45,7 +45,7 @@ class Home extends Component {
     return(
       <div id='home-page'>
         <Container >
-          <Header as='h1' id="home-logo">Slices</Header>
+          <Header as='h1' id="home-logo">Pizza 42</Header>
           <Container id="home-content">
             <Header as='h1' id="home-header">Delicious pizzas delivered to your doorstep</Header>
             <Form size='large' onSubmit={this.handlePostcodeSubmit} fluid='true'>

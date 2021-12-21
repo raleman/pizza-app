@@ -34,7 +34,7 @@ class NavBar extends Component{
             <Button color='teal' onClick={logout}>Log out</Button>
           )}
           </Menu.Item>       
-          <Menu.Item id='navbar-total' position='right'>
+          <Menu.Item as={Link} to='/cart' id='navbar-total' position='right'>
             <Icon name='cart'/>
             {formatPrice(this.props.orderTotal)}
             {this.props.children}

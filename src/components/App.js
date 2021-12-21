@@ -6,6 +6,7 @@ import { sampleCustomer } from '../data/sampleCustomer';
 
 import Menu from './Menu';
 import Cart from './Cart';
+import Profile from './Profile'
 import Checkout from './Checkout';
 import Confirmation from './Confirmation';
 
@@ -126,6 +127,13 @@ class App extends Component {
                 order={this.state.order} /> } />
             <Route exact path='/cart' render={ (props) =>
               <Cart {...props}
+                orderTotal={this.state.orderTotal}
+                addToOrder={this.addToOrder}
+                removeFromOrder={this.removeFromOrder}
+                order={this.state.order}
+                updateCheckoutTotal={this.updateCheckoutTotal} /> } />
+            <Route exact path='/profile' render={ (props) =>
+              <Profile {...props}
                 orderTotal={this.state.orderTotal}
                 addToOrder={this.addToOrder}
                 removeFromOrder={this.removeFromOrder}

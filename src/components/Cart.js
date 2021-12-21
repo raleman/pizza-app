@@ -55,7 +55,7 @@ class Cart extends Component {
             />
             <Container id='cart-total'>
               <p>Order: <strong>{formatPrice(totalPizzaPrice)}</strong></p>
-              <p>Delivery (free over £12): <strong>{formatPrice(deliveryPrice)}</strong></p>
+              <p>Delivery (free over $12): <strong>{formatPrice(deliveryPrice)}</strong></p>
               <p>Total: <strong>{formatPrice(checkoutTotal)}</strong></p>
               <Button as={Link} to='/checkout' id='cart-checkout-btn' color='teal' onClick={() => this.props.updateCheckoutTotal(checkoutTotal)}>Go to Payment</Button>
             </Container>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Button, Card, Image } from 'semantic-ui-react';
 import { withAuth0 } from '@auth0/auth0-react';
 
@@ -13,7 +12,6 @@ class UserDetails extends Component {
       isAuthenticated,
       error,
       user,
-      loginWithRedirect,
       logout,
     } = this.props.auth0;
 

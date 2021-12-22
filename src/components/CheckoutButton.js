@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Image } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import { withAuth0 } from '@auth0/auth0-react';
 
 class CheckoutButton extends Component{
@@ -16,10 +16,8 @@ class CheckoutButton extends Component{
     const {
       isLoading,
       isAuthenticated,
-      error,
       user,
       loginWithRedirect,
-      logout,
     } = this.props.auth0;
 
     if (isLoading) {

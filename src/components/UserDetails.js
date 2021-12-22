@@ -5,13 +5,6 @@ import { withAuth0 } from '@auth0/auth0-react';
 
 class UserDetails extends Component {
 
-  static propTypes = {
-    orderTotal: PropTypes.number,
-    addToOrder: PropTypes.func.isRequired,
-    removeFromOrder: PropTypes.func.isRequired,
-    order: PropTypes.array,
-    updateCheckoutTotal: PropTypes.func.isRequired,
-  }
 
   render(){
 

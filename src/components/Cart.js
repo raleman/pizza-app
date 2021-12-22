@@ -7,6 +7,7 @@ import { formatPrice } from '../helpers';
 import NavBar from './NavBar';
 import Order from './Order';
 import Footer from './Footer';
+import CheckoutButton from './CheckoutButton';
 
 class Cart extends Component {
 
@@ -57,7 +58,7 @@ class Cart extends Component {
               <p>Order: <strong>{formatPrice(totalPizzaPrice)}</strong></p>
               <p>Delivery (free over $12): <strong>{formatPrice(deliveryPrice)}</strong></p>
               <p>Total: <strong>{formatPrice(checkoutTotal)}</strong></p>
-              <Button as={Link} to='/checkout' id='cart-checkout-btn' color='teal' onClick={() => this.props.updateCheckoutTotal(checkoutTotal)}>Go to Payment</Button>
+              <CheckoutButton checkoutTotal={checkoutTotal} updateCheckoutTotal={this.props.updateCheckoutTotal}/>
             </Container>
             </Container>
           </Container>

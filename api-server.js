@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
+const jwtScope = require('express-jwt-scope');
 const authConfig = require("./src/auth_config.json");
 
 const app = express();
@@ -41,10 +42,11 @@ const checkJwt = jwt({
   algorithms: ["RS256"],
 });
 
-app.get("/api/external", checkJwt, (req, res) => {
-  res.send({
-    msg: "Your access token was successfully validated!",
+app.get('/api/order/create', checkJwt, jwtScope('create:order'), function(req, res) {
+  res.json({
+    message: 'Success! Mario is getting your food ready (Not really though.  You should go get something to eat.)'
   });
 });
+
 
 app.listen(port, () => console.log(`API Server listening on port ${port}`));

@@ -54,7 +54,7 @@ class PaymentForm extends Component {
           <Modal.Content>
             <Modal.Description>
               <p><strong>Card number:</strong> 4242424242424242</p>
-              <p><strong>Expiration date:</strong> 12/20</p>
+              <p><strong>Expiration date:</strong> 12/25</p>
               <p><strong>CVC:</strong> 123</p>
             </Modal.Description>
           </Modal.Content>

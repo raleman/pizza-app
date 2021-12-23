@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Elements } from 'react-stripe-elements';
 import { Grid, Container, Header, Button } from 'semantic-ui-react';
 import { formatPrice } from '../helpers';
+import { withAuth0 } from '@auth0/auth0-react';
 
 import NavBar from './NavBar';
 import CustomerDetailsForm from './CustomerDetailsForm';
@@ -23,7 +24,10 @@ class Checkout extends Component {
   state = {
     customerForm: false,
     paymentForm: false,
-    completedForm: false
+    completedForm: false,
+    showResult: false,
+    apiMessage: "",
+    error: null,
   }
 
   checkPaymentForm = (bool) => {
@@ -35,15 +39,39 @@ class Checkout extends Component {
 
     if (firstName && lastName && email && contactNum && address) {
       this.setState({ customerForm: true });
+      return true
     } else {
       this.setState({ customerForm: false });
+      return false
     }
   }
 
-  handleSubmit = () => {
-    this.checkCustomerForm();
+  callApi = async () => {
+    try {
+      const token = await this.props.auth0.getAccessTokenSilently();
 
-    if(this.state.customerForm && this.state.paymentForm) {
+      const response = await fetch(`http://localhost:3001/api/order/create`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const responseData = await response.json();
+
+      this.setState({
+        showResult: true,
+        apiMessage: responseData,
+      });
+    } catch (error) {
+      this.setState({
+        error: error.error,
+      });
+    }
+  };
+
+  handleSubmit = () => {
+    if(this.checkCustomerForm() && this.state.paymentForm) {
+      this.callApi();
       this.setState({ completedForm: true });
     } else {
       this.setState({ completedForm: false });
@@ -51,7 +79,20 @@ class Checkout extends Component {
   }
 
   render(){
-    if (this.state.completedForm) {
+
+    const {
+      isLoading,
+      isAuthenticated,
+      error,
+      user,
+      logout,
+    } = this.props.auth0;
+
+    if (!isLoading && !isAuthenticated){
+      return <Redirect push to='/' />;
+      }
+
+    if (this.state.completedForm && this.state.showResult) {
     return <Redirect push to='/confirmed' />;
     }
 
@@ -85,4 +126,4 @@ class Checkout extends Component {
   }
 }
 
-export default Checkout;
+export default withAuth0(Checkout);

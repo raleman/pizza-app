@@ -35,9 +35,9 @@ class Checkout extends Component {
   }
 
   checkCustomerForm = () => {
-    const { firstName, lastName, email, contactNum, address } = this.props.customerDetails;
+    const { firstName, lastName, email, contactNum, address, zip } = this.props.customerDetails;
 
-    if (firstName && lastName && email && contactNum && address) {
+    if (firstName && lastName && email && contactNum && address && zip) {
       this.setState({ customerForm: true });
       return true
     } else {
@@ -46,7 +46,7 @@ class Checkout extends Component {
     }
   }
 
-  callApi = async () => {
+  placeOrder = async () => {
     try {
       const token = await this.props.auth0.getAccessTokenSilently();
 
@@ -71,7 +71,7 @@ class Checkout extends Component {
 
   handleSubmit = () => {
     if(this.checkCustomerForm() && this.state.paymentForm) {
-      this.callApi();
+      this.placeOrder();
       this.setState({ completedForm: true });
     } else {
       this.setState({ completedForm: false });
@@ -88,7 +88,7 @@ class Checkout extends Component {
       logout,
     } = this.props.auth0;
 
-    if (!isLoading && !isAuthenticated){
+    if ((!isLoading && !isAuthenticated) || (isAuthenticated && !user.email_verified)) {
       return <Redirect push to='/' />;
       }
 

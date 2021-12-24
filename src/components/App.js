@@ -16,13 +16,13 @@ class App extends Component {
     order: [],
     orderTotal: 0,
     checkoutTotal: 0,
-    postcode:'',
     customer: {
       firstName: '',
       lastName: '',
       email: '',
       contactNum: '',
       address: '',
+      zip: '',
     }
   }
 
@@ -89,12 +89,6 @@ class App extends Component {
     });
   }
 
-  updatePostcode = (newPostcode) => {
-    this.setState({
-      postcode: newPostcode
-    });
-  }
-
   loadSampleCustomer = () => {
     this.setState({ customer: sampleCustomer })
   }
@@ -104,13 +98,13 @@ class App extends Component {
       order: [],
       orderTotal: 0,
       checkoutTotal: 0,
-      postcode:'',
       customer: {
         firstName: '',
         lastName: '',
         email: '',
         contactNum: '',
         address: '',
+        zip:'',
     }
   });
 }

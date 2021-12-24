@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button } from 'semantic-ui-react';
+import { Button, Modal } from 'semantic-ui-react';
 import { withAuth0 } from '@auth0/auth0-react';
 
 class CheckoutButton extends Component{
@@ -25,7 +25,17 @@ class CheckoutButton extends Component{
     }
 
     if (isAuthenticated && !user.email_verified) {
-      return <Button color='teal' size='large' onClick={loginWithRedirect}>Verify Email</Button>;
+      return (
+        <Modal trigger={<Button size='large' color='teal'>Verify Email</Button>} closeIcon>
+          <Modal.Header>Verify Your Email</Modal.Header>
+          <Modal.Content>
+            <Modal.Description>
+              <p><strong>A verification email was sent to {user.email} when you logged in. Click on the link in the email, then hit the button proceed.</strong></p>
+              <Button color='teal' size='large' onClick={loginWithRedirect}>I'm Verified</Button>
+            </Modal.Description>
+          </Modal.Content>
+        </Modal>
+      );
     }
     
     if (isAuthenticated) {

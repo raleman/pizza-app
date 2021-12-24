@@ -128,15 +128,12 @@ class App extends Component {
                 updateCheckoutTotal={this.updateCheckoutTotal} /> } />
             <Route exact path='/profile' render={ (props) =>
               <Profile {...props}
-                orderTotal={this.state.orderTotal}
-                addToOrder={this.addToOrder}
-                removeFromOrder={this.removeFromOrder}
-                order={this.state.order}
-                updateCheckoutTotal={this.updateCheckoutTotal} /> } />
+                orderTotal={this.state.orderTotal} /> } />
             <Route exact path='/checkout' render={ (props) =>
               <StripeProvider apiKey='pk_test_12345'>
                 <Checkout {...props}
                   orderTotal={this.state.orderTotal}
+                  order={this.state.order}
                   customerDetails={this.state.customer}
                   checkoutTotal={this.state.checkoutTotal}
                   updateCustomerDetails={this.updateCustomerDetails}

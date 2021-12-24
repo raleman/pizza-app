@@ -11,10 +11,6 @@ class Profile extends Component {
 
   static propTypes = {
     orderTotal: PropTypes.number,
-    addToOrder: PropTypes.func.isRequired,
-    removeFromOrder: PropTypes.func.isRequired,
-    order: PropTypes.array,
-    updateCheckoutTotal: PropTypes.func.isRequired,
   }
 
   render(){

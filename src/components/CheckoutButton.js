@@ -42,7 +42,7 @@ class CheckoutButton extends Component{
       return <Button as={Link} to='/checkout' id='cart-checkout-btn' color='teal' onClick={() => this.props.updateCheckoutTotal(this.props.checkoutTotal)}>Go to Payment</Button>;
 
     } else {
-      return <Button color='teal' size='large' onClick={loginWithRedirect}>Log in or Sign Up</Button>;
+      return <Button color='teal' size='large' onClick={()=>loginWithRedirect({redirectUri:window.location.href})}>Log in or Sign Up</Button>;
     }
 
 

@@ -24,7 +24,7 @@ class AccountButton extends Component{
         </Image>
       );
     } else {
-      return <Button color='teal' size='large' onClick={loginWithRedirect}>Log in</Button>;
+      return <Button color='teal' size='large' onClick={()=>loginWithRedirect({redirectUri:window.location.href})}>Log in</Button>;
     }
 
 

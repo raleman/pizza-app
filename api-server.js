@@ -65,12 +65,12 @@ app.post('/api/order/create', checkJwt, jwtScope('create:order'), function(req, 
   });
 
   management.users.get(params, function (err, user) {
-    console.log(user.user_metadata.orderHistory);
 
     var orderHistory = {}
 
-    if (user.user_metadata.orderHistory) {
+    if (user.user_metadata && user.user_metadata.orderHistory) {
       orderHistory = user.user_metadata.orderHistory;
+      console.log(orderHistory);
     }
 
     orderHistory[orderNum] = newOrder;

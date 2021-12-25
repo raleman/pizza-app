@@ -4,6 +4,7 @@ export const sampleCustomer = {
     email: 'hamwell@dragonglass.co',
     contactNum: '0123456789',
     address: '3 Dragon Way, Oldtown',
+    zip: '12345',
 }
 
 export const sampleCard = {
@@ -12,4 +13,5 @@ export const sampleCard = {
     email: 'hamwell@dragonglass.co',
     contactNum: '0123456789',
     address: '3 Dragon Way, Oldtown',
+    zip: '12345',
 }

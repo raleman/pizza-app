@@ -6,6 +6,8 @@ const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
 const jwtScope = require('express-jwt-scope');
 const authConfig = require("./src/auth_config.json");
+const apiConfig = require("./api_config.json");
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -16,10 +18,12 @@ const appOrigin = authConfig.appOrigin || `http://localhost:${appPort}`;
 if (
   !authConfig.domain ||
   !authConfig.audience ||
-  authConfig.audience === "YOUR_API_IDENTIFIER"
+  authConfig.audience === "YOUR_API_IDENTIFIER" ||
+  !apiConfig.clientSecret ||
+  !apiConfig.clientId 
 ) {
   console.log(
-    "Exiting: Please make sure that auth_config.json is in place and populated with valid domain and audience values"
+    "Exiting: Please make sure that auth_config.json and api_config are in place and populated with valid domain and audience values"
   );
 
   process.exit();
@@ -28,6 +32,9 @@ if (
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(cors({ origin: appOrigin }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.raw());
 
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
@@ -42,9 +49,48 @@ const checkJwt = jwt({
   algorithms: ["RS256"],
 });
 
-app.get('/api/order/create', checkJwt, jwtScope('create:order'), function(req, res) {
+app.post('/api/order/create', checkJwt, jwtScope('create:order'), function(req, res) {
+
+  console.log(req.body)
+  var params = { id: req.user.sub };
+  var newOrder = req.body.order
+  var orderNum = Date.now()
+  
+  var ManagementClient = require('auth0').ManagementClient;
+  
+  var management = new ManagementClient({
+    domain: authConfig.domain,
+    clientId: apiConfig.clientId,
+    clientSecret: apiConfig.clientSecret,
+  });
+
+  management.users.get(params, function (err, user) {
+    console.log(user.user_metadata.orderHistory);
+
+    var orderHistory = {}
+
+    if (user.user_metadata.orderHistory) {
+      orderHistory = user.user_metadata.orderHistory;
+    }
+
+    orderHistory[orderNum] = newOrder;
+
+    var metadata = {orderHistory : orderHistory} 
+
+    management.updateUserMetadata(params, metadata, function (err, user) {
+      if (err) {
+        console.log(err);
+      }
+
+      // Updated user.
+      console.log(user);
+    });
+
+  });
+
   res.json({
-    message: 'Success! Mario is getting your food ready (Not really though.  You should go get something to eat.)'
+    message: 'Success! Mario is getting your food ready (Not really though.  You should go get something to eat.)',
+    orderNum: orderNum
   });
 });
 

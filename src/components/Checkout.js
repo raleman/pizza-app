@@ -15,6 +15,7 @@ class Checkout extends Component {
 
   static propTypes = {
     orderTotal: PropTypes.number,
+    order: PropTypes.array,
     customerDetails: PropTypes.object,
     loadSampleCustomer: PropTypes.func.isRequired,
     updateCustomerDetails: PropTypes.func.isRequired,
@@ -26,7 +27,7 @@ class Checkout extends Component {
     paymentForm: false,
     completedForm: false,
     showResult: false,
-    apiMessage: "",
+    apiResponse: "",
     error: null,
   }
 
@@ -51,16 +52,20 @@ class Checkout extends Component {
       const token = await this.props.auth0.getAccessTokenSilently();
 
       const response = await fetch(`http://localhost:3001/api/order/create`, {
+        method:'POST',
         headers: {
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ order : {items : this.props.order, orderTotal: this.props.orderTotal }})
       });
 
       const responseData = await response.json();
 
       this.setState({
         showResult: true,
-        apiMessage: responseData,
+        apiResponse: responseData,
+        
       });
     } catch (error) {
       this.setState({
@@ -93,7 +98,10 @@ class Checkout extends Component {
       }
 
     if (this.state.completedForm && this.state.showResult) {
-    return <Redirect push to='/confirmed' />;
+    return <Redirect push to={{
+        pathname: '/confirmed',
+        state: { orderNum: this.state.apiResponse.orderNum }
+      }} />;
     }
 
     return(

@@ -21,7 +21,7 @@ class Confirmation extends Component {
   }
 
   render(){
-    if(this.state.newOrder) {
+    if(this.state.newOrder || !this.props.location.state || !this.props.location.state.orderNum ) {
       return <Redirect push to='/' />;
     }
 
@@ -34,7 +34,7 @@ class Confirmation extends Component {
       </Menu>
         <Container textAlign='center' id='confirmation-container'>
           <Header as='h1' id='page-header'>Thanks, {firstName}!</Header>
-          <p id='confirmation-text'>Your order, <strong>#2222</strong> is now being prepped and will be delivered to: </p>
+          <p id='confirmation-text'>Your order, <strong>{this.props.location.state.orderNum}</strong> is now being prepped and will be delivered to: </p>
           <p><strong>{address}</strong></p>
           <p>within the next hour <span role='img' aria-label='motorcycle'>🛵</span> </p>
           <Image centered id='confirmation-img'  src='https://media.giphy.com/media/j1p1Z7XaX8HEQ/giphy.gif' />

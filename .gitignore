@@ -24,3 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 auth_config.json
+api_config.json

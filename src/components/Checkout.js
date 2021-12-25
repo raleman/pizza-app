@@ -88,9 +88,7 @@ class Checkout extends Component {
     const {
       isLoading,
       isAuthenticated,
-      error,
       user,
-      logout,
     } = this.props.auth0;
 
     if ((!isLoading && !isAuthenticated) || (isAuthenticated && !user.email_verified)) {

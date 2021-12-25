@@ -1,3 +1,14 @@
+# Adding Auth0 Exercise
+
+I'm taking someone elses very nice react pizza app, and adding various Auth0 features as an exercise
+## Get up and running
+
+edit api_config.json and auth_config.json
+
+npm install
+npm run dev
+
+# Original Readme from Pam De Silva below
 # React Pizza Store 🍕 🍕 🍕
 
 A simple front-end pizza store built using React, Semantic UI React and a dash of Stripe Elements. I did this project to get more comfortable with React. [View demo](https://slices.pamela.io/).

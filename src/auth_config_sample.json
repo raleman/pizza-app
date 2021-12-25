@@ -1,0 +1,8 @@
+{
+  "domain": "{DOMAIN}",
+  "clientId": "{CLIENT_ID}",
+  "audience": "{API_IDENTIFIER}",
+  "appOrigin": "http://localhost:3000",
+  "apiOrigin": "http://localhost:3001",
+  "scope": "create:order"
+}

@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Elements } from 'react-stripe-elements';
 import { Grid, Container, Header, Button } from 'semantic-ui-react';
-import { formatPrice } from '../helpers';
+import { formatPrice, getConfig } from '../helpers';
 import { withAuth0 } from '@auth0/auth0-react';
 
 import NavBar from './NavBar';
@@ -49,9 +49,12 @@ class Checkout extends Component {
 
   placeOrder = async () => {
     try {
+
+      const config = getConfig();
+
       const token = await this.props.auth0.getAccessTokenSilently();
 
-      const response = await fetch(`http://localhost:3001/api/order/create`, {
+      const response = await fetch(`${config.apiOrigin}/api/order/create`, {
         method:'POST',
         headers: {
           Authorization: `Bearer ${token}`,

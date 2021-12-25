@@ -1,6 +1,6 @@
 {
   "domain": "YOUR_DOMAIN",
-  "clientId": "YOUR_CLIENT_ID",
-  "clientSecret": "YOUR_CLIENT_SECRET",
+  "clientId": "YOUR_API_CLIENT_ID",
+  "clientSecret": "YOUR_API_CLIENT_SECRET",
   "audience": "https://YOUR_DOMAIN/api/v2/"
 }

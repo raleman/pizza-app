@@ -3,7 +3,9 @@
 I'm taking someone elses very nice react pizza app, and adding various Auth0 features as an exercise
 ## Get up and running
 
-edit api_config.json and auth_config.json
+install latest nodejs LTS with npm https://nodejs.org/en/download/
+
+edit api_config.json and auth_config.json (see samples)
 
 npm install
 npm run dev
